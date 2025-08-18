@@ -6,12 +6,6 @@
 /* eslint-disable */
 
 import { type SchemaType as $Schema } from "./schema";
-import { type ModelResult as $ModelResult } from "@zenstackhq/runtime";
-/**
- * User model
- */
+import { type ModelResult as $ModelResult, type TypeDefResult as $TypeDefResult } from "@zenstackhq/runtime";
 export type User = $ModelResult<$Schema, "User">;
-/**
- * Post model
- */
-export type Post = $ModelResult<$Schema, "Post">;
+export type Profile = $TypeDefResult<$Schema, "Profile">;

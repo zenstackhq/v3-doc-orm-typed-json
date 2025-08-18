@@ -27,11 +27,10 @@ export const schema = {
                     unique: true,
                     attributes: [{ name: "@unique" }]
                 },
-                posts: {
-                    name: "posts",
-                    type: "Post",
-                    array: true,
-                    relation: { opposite: "author" }
+                profile: {
+                    name: "profile",
+                    type: "Profile",
+                    attributes: [{ name: "@json" }]
                 }
             },
             idFields: ["id"],
@@ -39,77 +38,21 @@ export const schema = {
                 id: { type: "Int" },
                 email: { type: "String" }
             }
-        },
-        Post: {
-            name: "Post",
+        }
+    },
+    typeDefs: {
+        Profile: {
+            name: "Profile",
             fields: {
-                id: {
-                    name: "id",
-                    type: "Int",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("autoincrement") }] }],
-                    default: ExpressionUtils.call("autoincrement")
+                age: {
+                    name: "age",
+                    type: "Int"
                 },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                content: {
-                    name: "content",
+                gender: {
+                    name: "gender",
                     type: "String",
                     optional: true
-                },
-                slug: {
-                    name: "slug",
-                    type: "String",
-                    unique: true,
-                    optional: true,
-                    attributes: [{ name: "@unique" }]
-                },
-                viewCount: {
-                    name: "viewCount",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                published: {
-                    name: "published",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                author: {
-                    name: "author",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("authorId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }] }],
-                    relation: { opposite: "posts", fields: ["authorId"], references: ["id"] }
-                },
-                authorId: {
-                    name: "authorId",
-                    type: "Int",
-                    optional: true,
-                    foreignKeyFor: [
-                        "author"
-                    ]
                 }
-            },
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "Int" },
-                slug: { type: "String" }
             }
         }
     },
