@@ -1,5 +1,3 @@
-// This is a sample model to get you started.
-
 datasource db {
     provider = 'sqlite'
 }
