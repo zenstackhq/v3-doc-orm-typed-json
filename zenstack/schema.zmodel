@@ -5,10 +5,16 @@ datasource db {
 type Profile {
     age    Int
     gender String?
+    jobs   Job[]?
+}
+
+type Job {
+    company String
+    title   String
 }
 
 model User {
-    id       Int    @id @default(autoincrement())
-    email    String @unique
-    profile  Profile @json
+    id      Int     @id @default(autoincrement())
+    email   String  @unique
+    profile Profile @json
 }

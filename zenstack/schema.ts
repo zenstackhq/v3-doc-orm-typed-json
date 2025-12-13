@@ -6,11 +6,11 @@
 /* eslint-disable */
 
 import { type SchemaDef, ExpressionUtils } from "@zenstackhq/orm/schema";
-const _schema = {
-    provider: {
+export class SchemaType implements SchemaDef {
+    provider = {
         type: "sqlite"
-    },
-    models: {
+    } as const;
+    models = {
         User: {
             name: "User",
             fields: {
@@ -39,8 +39,8 @@ const _schema = {
                 email: { type: "String" }
             }
         }
-    },
-    typeDefs: {
+    } as const;
+    typeDefs = {
         Profile: {
             name: "Profile",
             fields: {
@@ -52,15 +52,30 @@ const _schema = {
                     name: "gender",
                     type: "String",
                     optional: true
+                },
+                jobs: {
+                    name: "jobs",
+                    type: "Job",
+                    optional: true,
+                    array: true
+                }
+            }
+        },
+        Job: {
+            name: "Job",
+            fields: {
+                company: {
+                    name: "company",
+                    type: "String"
+                },
+                title: {
+                    name: "title",
+                    type: "String"
                 }
             }
         }
-    },
-    authType: "User",
-    plugins: {}
-} as const satisfies SchemaDef;
-type Schema = typeof _schema & {
-    __brand?: "schema";
-};
-export const schema: Schema = _schema;
-export type SchemaType = Schema;
+    } as const;
+    authType = "User" as const;
+    plugins = {};
+}
+export const schema = new SchemaType();
