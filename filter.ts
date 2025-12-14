@@ -7,6 +7,7 @@ async function main() {
   const user = await db.user.create({
     data: {
       email: 'u1@test.com',
+      // "profile" is a typed JSON field
       profile: {
         age: 20,
         jobs: [
