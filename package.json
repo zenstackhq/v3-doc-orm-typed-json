@@ -5,7 +5,7 @@
     "generate": "zen generate",
     "dev": "npm run generate && tsx main.ts",
     "filter": "npm run generate && tsx filter.ts",
-    "up": "npm i @zenstackhq/cli@next @zenstackhq/orm@next"
+    "up": "npm i @zenstackhq/cli@latest @zenstackhq/orm@latest"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
